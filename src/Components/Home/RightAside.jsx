@@ -1,9 +1,16 @@
-import React from 'react'
+import React from "react";
+import SocialLogin from "./SocialLogin";
+import FindUs from "./FindUs";
+import QZone from "./Qzon";
 
 const RightAside = () => {
   return (
-    <div>RightAside</div>
-  )
-}
+    <div className="space-y-8">
+      <SocialLogin />
+      <FindUs />
+      <QZone />
+    </div>
+  );
+};
 
-export default RightAside
+export default RightAside;
