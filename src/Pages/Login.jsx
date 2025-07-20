@@ -1,15 +1,36 @@
-import React from "react";
-import { Link } from "react-router";
+import React, { use } from "react";
+import { Link, useNavigate } from "react-router";
+import { AuthContext } from "../provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Login = () => {
-  
+  const {signIn, saveUser} = use(AuthContext)
+  const navigate = useNavigate()
+  const handleLogin = (e) => {
+    e.preventDefault()
+    const email = e.target.email.value
+    const password = e.target.password.value
+    signIn(email, password)
+    .then(result => {
+        const user = result.user
+        console.log(user)
+        saveUser(user);
+        toast.success("Login successful")
+        navigate("/")
+    })
+    .catch(error => {
+        console.log(error)
+        const errorMessage = error.message
+        toast.error(errorMessage)
+    })
+  } 
   return (
     <div className="flex justify-center min-h-screen items-center">
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl py-5">
         <h2 className="font-semibold text-2xl text-center">
           Login your account
         </h2>
-        <form className="card-body">
+        <form onSubmit={handleLogin} className="card-body">
           <fieldset className="fieldset">
             {/* email  */}
             <label className="label">Email</label>
