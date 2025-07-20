@@ -31,8 +31,10 @@ const categories = use(categoryPromise);
         {categories.data.news_category.map((category) => (
           <NavLink
             key={category.category_id}
-            className={
-              "btn bg-base-100 border-0 hover:bg-base-200 font-semibold text-accent"
+            className={({ isActive }) =>
+              isActive
+                ? "text-primary text-center font-semibold bg-slate-100 py-4 rounded-md"
+                : "btn bg-base-100 border-0 hover:bg-base-200 font-semibold text-accent"
             }
             to={`/category/${category.category_id}`}
           >
