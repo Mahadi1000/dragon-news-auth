@@ -26,7 +26,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/news-details/:id",
-    element: <PrivateRoute><NewsDetails></NewsDetails></PrivateRoute>,
+    element: (
+      <PrivateRoute>
+        <NewsDetails></NewsDetails>
+      </PrivateRoute>
+    ),
   },
 
   {
